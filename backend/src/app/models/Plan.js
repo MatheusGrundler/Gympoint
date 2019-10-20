@@ -1,36 +1,20 @@
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('plans', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      title: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      duration: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      price: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
+import Sequelize, { Model } from 'sequelize';
 
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
+class Plan extends Model {
+  static init(sequelize) {
+    super.init(
+      {
+        title: Sequelize.STRING,
+        duration: Sequelize.INTEGER,
+        price: Sequelize.INTEGER,
       },
-      updated_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-    });
-  },
-  down: queryInterface => {
-    return queryInterface.dropTable('plans');
-  },
-};
+      {
+        sequelize,
+      }
+    );
+
+    return this;
+  }
+}
+
+export default Plan;
