@@ -18,12 +18,10 @@ class RegistrationContoller {
     if (registrations.length === 0) {
       return res.status(400).json({ message: 'No registrations found' });
     }
-    registrations.forEach(registration => {
-      const { student_id, plan_id, start_date, end_date, price } = registration;
-
-      return res.json({ student_id, plan_id, start_date, end_date, price });
-    });
-    return null;
+    // registrations.forEach(registration => {
+    //   const { student_id, plan_id, start_date, end_date, price } = registration;
+    // });
+    return res.json(registrations);
   }
   /**
    * Criar dados
