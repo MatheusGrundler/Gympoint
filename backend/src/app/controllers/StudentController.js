@@ -3,6 +3,16 @@ import * as Yup from 'yup';
 import Student from '../models/Student';
 
 class StudentsController {
+  async index(req, res) {
+    if (req.params !== null) {
+      const student = await Student.findByPk(req.params);
+      return res.json(student);
+    } else {
+    }
+    const student = await Student.findAll();
+
+    return res.json(student);
+  }
   async store(req, res) {
     const schema = Yup.object().shape({
       nome: Yup.string().required(),

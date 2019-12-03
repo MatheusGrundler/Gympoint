@@ -13,8 +13,9 @@ class RegistrationContoller {
    */
 
   async index(req, res) {
-    const registrations = await Registration.findAll();
-
+    const registrations = await Registration.findAll({
+      attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
+    });
     if (registrations.length === 0) {
       return res.status(400).json({ message: 'No registrations found' });
     }
